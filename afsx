@@ -1,0 +1,27 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua%22))()
+local Window = Library.CreateLib("Vital HUB Rollback🗣️🔥🧊", "DarkTheme")
+
+If game.PlaceId == 11545598432 then
+-- MAIN
+local Main - Window:NewTab("Main")
+local MainSection - Main:NewSection("RollBack")
+Section:UpdateSection("Section New Title")
+Section:NewLabel("LabelText")
+label:UpdateLabel("New Text")
+MainSectionSection:NewButton("Summon and rollback", "Summon for secret if you dont get it will rollback", function()
+    local ChampionsFrame = game:GetService("Players").LocalPlayer.PlayerGui.Menu.PagesContainer.Champions.container["1"].extra["1"]
+    local DesiredChampions = {"Boro", "Navi", "Wan"} -- Champions you don't want to sell
+
+    local args = {
+        [1] = "Sell",
+        [2] = {}
+    }
+
+    for _, Champ in pairs(ChampionsFrame:GetChildren()) do
+        if Champ:FindFirstChild("upgradeName") and not table.find(DesiredChampions, Champ.upgradeName.Text) then
+            table.insert(args[2], Champ.Name)
+        end
+    end
+
+    game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("Champions/RemoteEvent"):FireServer(unpack(args))
+end)
